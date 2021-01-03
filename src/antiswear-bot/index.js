@@ -1,5 +1,4 @@
-// Request the discord.js modules
-// To install do npm install discord.js
+require('dotenv').config()
 const discord = require("discord.js");
 
 // Request the Discord Client
@@ -20,6 +19,7 @@ client.login(config.token)
 client.on("ready", async => {
     // Log that the bot started
     console.log(`Antiswear-bot started.`)
+    bot.user.setActivity({ name: `${message.guild.memberCount} server`, type: 'PLAYING'})
 })
 
 // Create the antiswear message event
@@ -41,7 +41,7 @@ client.on("message", async => {
             message.delete()
         
             // Send the message and remove the message after 1 second.
-        return message.channel.send(`✖ You are not allowed to say that.`).then(msg => msg.delete({ timeout: 1000 }));
+        return message.channel.send(`:x: You cannot say that here.`).then(msg => msg.delete({ timeout: 1000 }));
 
         }
     }
